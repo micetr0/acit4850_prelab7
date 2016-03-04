@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<!-- TODO define your own vocabulary/syntax. Example follows:  -->
+<!--
+<!ELEMENT __ROOT__ ANY>-->
+<!--<!ATTLIST __ROOT__ version CDATA #REQUIRED>
+-->
+<!-- An order identifies the customer, order type, burgers, and anything special -->
+<!ELEMENT order (customer, delivery?, burger+, special?)>
+<!-- A customer is identified simply by their name -->
+<!ELEMENT customer (#PCDATA)>
+
+<!-- An order can be for eat-in, takeout, or delivery ... customer - specified -->
+<!ATTLIST order
+    type (eatin|takeout|delivery) #REQUIRED
+>
+
+<!-- An order to be delivered will need delivery instructions -->
+<!ELEMENT delivery (#PCDATA)>
+<!-- Let's provide for any special instructions-->
+<!ELEMENT special (#PCDATA)>
+
+<!-- The burgers will be specified individually-->
+<!ELEMENT burger (patty, cheeses?, topping*, sauce*, instructions?, name?)>
+<!-- A patty can be one of five type -->
+<!ELEMENT patty (#PCDATA)>
+<!ATTLIST patty
+    type (beef|pork|turkey|bison|bege) "beef"
+>
+
+<!-- The custome can order two cheeses-->
+<!ELEMENT cheeses EMPTY>
+<!ATTLIST cheeses
+    top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+    bottom (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+>
+
+<!-- Toopings there could be tons-->
+<!ELEMENT topping (#PCDATA) >
+<!ATTLIST topping
+    type (lettuce|tomato|raw|dill|roasted|shrooms|salsa|bacon|chilies|fkchili|avocado|egg|porkbelly) #REQUIRED
+>
+
+<!-- Sauces are similar to toppings-->
+<!ELEMENT sauce EMPTY>
+<!ATTLIST sauce
+    type (ketchup|mustard|mayo|fksauce) #REQUIRED
+>
+
+<!-- Instructions can be literally anything-->
+<!ELEMENT insructions (#PCDATA)>
+
+<!-- name can be literally anything-->
+<!ELEMENT name (#PCDATA)>
